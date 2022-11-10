@@ -15,12 +15,12 @@ class UserController extends Controller
         if ($result['error_code'] == '200') {
             $data = $result["payload"];
         }
-        return view('user', ['data' => $data]);
+        return view('user/user', ['data' => $data]);
     }
 
     public function tambah()
     {
-        return view('tambah-user');
+        return view('user/tambah-user');
     }
     public function store(Request $request)
     {
@@ -49,7 +49,7 @@ class UserController extends Controller
 
         $message = "Gagal Menambahkan User";
         session(['error' => $message]);
-        return redirect('/user');
+        return redirect('user/user');
     }
 
     public function edit($id)
@@ -60,7 +60,7 @@ class UserController extends Controller
         if ($result['error_code'] == '200') {
             $data = $result["payload"];
         }
-        return view('edit-user', ['user' => $data]);
+        return view('user/edit-user', ['user' => $data]);
     }
 
     public function update(Request $request)
@@ -88,7 +88,7 @@ class UserController extends Controller
         } catch (Exception $e) {
             $message = "Gagal Mengubah User";
             session(['error' => $message]);
-            return redirect('/user');
+            return redirect('user/user');
         }
     }
 
@@ -107,6 +107,6 @@ class UserController extends Controller
 
         $message = "Gagal Hapus User";
         session(['error' => $message]);
-        return redirect('/user');
+        return redirect('user/user');
     }
 }
